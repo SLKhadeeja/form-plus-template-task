@@ -1,0 +1,21 @@
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.pages {
+  display: flex;
+  align-items: center;
+}
+
+.pages > p {
+  margin: 0 5px;
+}
+
+#current-page {
+  padding: 0.5rem;
+  border: 1px solid #3F3F3F;
+  border-radius: 2px;
+}

@@ -1,0 +1,23 @@
+.App {
+  padding: 5em;
+  font-size: 0.8em;
+}
+
+.content {
+  padding: 2em 0;
+}
+
+.content-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
+}
+
+.title {
+  font-size: 1em;
+  color: #3F3E3E;
+}
+
+.template-quantity {
+  color: #989898;
+}
