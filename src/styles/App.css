@@ -21,3 +21,17 @@
 .template-quantity {
   color: #989898;
 }
+
+.template-cards-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-gap: 3rem;
+  margin: auto;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 450px) {
+  .App {
+    padding: 2em;
+  }
+}

@@ -13,7 +13,14 @@ function App() {
           <p className="title">All Templates</p>
           <p className="template-quantity">2000 templates</p>
         </div>
-        <TemplateCard />
+        <div className="template-cards-wrapper">
+          <TemplateCard />
+          <TemplateCard />
+          <TemplateCard />
+          <TemplateCard />
+          <TemplateCard />
+          <TemplateCard />
+        </div>
       </div>
       <Pagination />
     </div>

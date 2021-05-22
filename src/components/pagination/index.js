@@ -10,7 +10,7 @@ const Pagination = () => {
         <p>of</p>
         <p>46</p>
       </div>
-      <p>Next</p>
+      <p>Next <i className="fas fa-chevron-right"></i></p>
     </div>
   )
 }

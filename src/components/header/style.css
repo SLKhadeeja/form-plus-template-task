@@ -2,26 +2,35 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-flow: row wrap;
 }
 
 select, input {
   border: none;
   background: none;
   width: 100%;
-  padding: 1rem;
+  padding: 0 0.2em;
+  color: #3F3F3F;
 }
 
 .filter-container {
   display: flex;
+  max-width: 100%;
+}
+
+.filter-container > p {
+  color: #989898;
 }
 
 .search-input-container {
   height: 45px;
-  width: 30%;
+  width: 35%;
   border: 0.5px solid #BDBDBD;
   border-radius: 2px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
 }
 
 .filter-item {
@@ -30,10 +39,27 @@ select, input {
   height: 40px;
   margin: 0 1rem;
   width: 150px;
-  padding: 0 0.7rem;
   display: flex;
   align-items: center;
   color: #3F3F3F;
+  position: relative;
+}
+
+.label {
+  width: fit-content;
+  height: fit-content;
+  padding: 3px;
+  background: #ffffff;
+  position: absolute;
+  top: -50%;
+  bottom: 0;
+  left: 5%;
+  transform: translateY(50%);
+  color: #8F8B8B;
+}
+
+.label > p {
+  margin: 0;
 }
 
 .banner {
@@ -45,4 +71,20 @@ select, input {
   margin: 2.5rem 0;
   color: #252525;
   border-radius: 2px;
+}
+
+@media screen and (max-width: 1170px) {
+  header {
+    justify-content: center;
+  }
+
+  .search-input-container {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  select {
+    font-size: 0.7em;
+  }
+
 }
