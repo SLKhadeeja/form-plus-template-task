@@ -1,18 +1,28 @@
-import React from 'react';
+import React from "react";
+import { connect } from "react-redux";
+import { setPage } from "../../store/actions/pageActions";
 import "./style.css";
 
-const Pagination = () => {
+const mapStateToProps = ({ pagination, filter }) => {
+  return { category: filter.category, alphabeticOrder: filter.alphabeticOrder, dateOrder: filter.dateOrder, page: pagination.page };
+};
+
+const Pagination = ({ setPage, page, totalPages }) => {
   return (
     <div className="pagination-container">
-      <p>Previous</p>
+      <p onClick={() => setPage(page--)} className="page-toggle">
+        Previous
+      </p>
       <div className="pages">
-        <p id="current-page">1</p>
+        <p id="current-page">{page}</p>
         <p>of</p>
-        <p>46</p>
+        <p>{totalPages}</p>
       </div>
-      <p>Next <i className="fas fa-chevron-right"></i></p>
+      <p onClick={() => setPage(page++)} className="page-toggle">
+        Next <i className="fas fa-chevron-right"></i>
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default Pagination;
+export default connect(mapStateToProps, { setPage })(Pagination);

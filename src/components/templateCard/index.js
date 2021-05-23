@@ -1,18 +1,18 @@
-import React from 'react';
+import React from "react";
 import "./style.css";
 
-const TemplateCard = () => {
+const TemplateCard = ({ name, description }) => {
   return (
     <div className="card-container">
       <div className="card-info">
-        <h3>Alumni Membership Form Template</h3>
-        <p>Engage your alumni network better with this alumni registration form template. Embed this in your website ...</p>
+        <h3>{name}</h3>
+        <p>{description}</p>
       </div>
       <div className="use-template-container">
         <p>Use Template</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default TemplateCard;

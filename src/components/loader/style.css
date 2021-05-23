@@ -1,0 +1,35 @@
+#outer {
+  padding: 4rem;
+}
+
+#middle{
+  height: 100px;
+  width: 100px;
+  margin:auto;
+  position: relative;
+  top:20px;
+  border-radius: 50%;
+  background-image: linear-gradient(150deg, transparent 50%, #08BD37 50%),linear-gradient(90deg, #08BD37 50%, #ffffff 50%);
+  animation: rotation 1200ms infinite linear;
+  transform-origin: 50% 50%;
+  animation-timing-function: ease;
+}
+
+#inner{
+  background: #ffffff;
+  height: 88px;
+  width: 88px;
+  margin:auto;
+  position: relative;
+  top:6px;
+  border-radius: 50%;
+}
+
+@keyframes rotation {
+from {
+  transform: rotate(270deg);
+}
+to{
+  transform: rotate(630deg);
+  }
+}
