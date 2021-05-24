@@ -24,10 +24,17 @@
 
 .template-cards-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 3rem;
   margin: auto;
   justify-content: space-around;
+}
+
+#empty-array {
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 1em;
 }
 
 @media screen and (max-width: 450px) {

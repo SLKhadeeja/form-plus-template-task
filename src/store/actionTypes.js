@@ -8,4 +8,5 @@ export const SET_PAGE = "SET_PAGE";
 export const GET_DATA_FAILURE = "GET_DATA_FAILURE";
 export const DATA_SUCCESS = "DATA_SUCCESS";
 export const ADD_DATA = "ADD_DATA";
+export const DATA_LOADING = "DATA_LOADING";
 export const MUTATE_DATA = "MUTATE_DATA";

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_DATA_FAILURE, DATA_SUCCESS, ADD_DATA, MUTATE_DATA } from "../actionTypes";
+import { GET_DATA_FAILURE, DATA_SUCCESS, ADD_DATA, MUTATE_DATA, DATA_LOADING } from "../actionTypes";
 
 const apiUrl = "https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates";
 
@@ -7,13 +7,6 @@ export const hasfailed = (message) => {
   return {
     type: GET_DATA_FAILURE,
     payload: message,
-  };
-};
-
-export const hasSucceed = () => {
-  return {
-    type: DATA_SUCCESS,
-    payload: "sucessful",
   };
 };
 
@@ -26,6 +19,10 @@ export const addData = (data) => {
 
 export const fetchData = () => {
   return (dispatch) => {
+    dispatch({
+      type: DATA_LOADING,
+      payload: "isLoading",
+    });
     return axios
       .get(apiUrl)
       .then((response) => {
@@ -36,7 +33,10 @@ export const fetchData = () => {
           type: ADD_DATA,
           payload: data,
         });
-        hasSucceed();
+        dispatch({
+          type: DATA_SUCCESS,
+          payload: "sucessful",
+        });
       })
       .catch((error) => {
         hasfailed(error);
