@@ -2,6 +2,7 @@ export const FilterInitialState = {
   category: "All",
   alphabeticOrder: "Default",
   dateOrder: "Default",
+  searchInput: "",
 };
 
 export const PageInitialState = {
@@ -12,4 +13,5 @@ export const FetchInitialState = {
   error: false,
   message: "isLoading",
   data: [],
+  immutableData: [],
 };

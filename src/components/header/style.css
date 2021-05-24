@@ -11,6 +11,11 @@ select, input {
   width: 100%;
   padding: 0 0.2em;
   color: #3F3F3F;
+  height: 100%;
+}
+
+input:focus-visible, select:focus-visible {
+  outline: none;
 }
 
 .filter-container {

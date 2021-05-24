@@ -1,4 +1,4 @@
-import { GET_DATA_FAILURE, DATA_SUCCESS, ADD_DATA } from "../actionTypes";
+import { GET_DATA_FAILURE, DATA_SUCCESS, ADD_DATA, MUTATE_DATA } from "../actionTypes";
 import { FetchInitialState } from "../initialState";
 
 export default function fetchFunctions(state = FetchInitialState, action) {
@@ -18,6 +18,13 @@ export default function fetchFunctions(state = FetchInitialState, action) {
       };
 
     case ADD_DATA:
+      return {
+        ...state,
+        data: action.payload,
+        immutableData: action.payload,
+      };
+
+    case MUTATE_DATA:
       return {
         ...state,
         data: action.payload,

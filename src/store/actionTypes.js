@@ -1,9 +1,11 @@
 export const SET_CATEGORY_FILTER = "SET_CATEGORY_FILTER";
 export const SET_ALPHABETICAL_ORDER = "SET_ALPHABETICAL_ORDER";
 export const SET_DATE_ORDER = "SET_DATE_ORDER";
+export const SEARCH = "SEARCH";
 
 export const SET_PAGE = "SET_PAGE";
 
 export const GET_DATA_FAILURE = "GET_DATA_FAILURE";
 export const DATA_SUCCESS = "DATA_SUCCESS";
 export const ADD_DATA = "ADD_DATA";
+export const MUTATE_DATA = "MUTATE_DATA";

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_DATA_FAILURE, DATA_SUCCESS, ADD_DATA } from "../actionTypes";
+import { GET_DATA_FAILURE, DATA_SUCCESS, ADD_DATA, MUTATE_DATA } from "../actionTypes";
 
 const apiUrl = "https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates";
 
@@ -14,6 +14,13 @@ export const hasSucceed = () => {
   return {
     type: DATA_SUCCESS,
     payload: "sucessful",
+  };
+};
+
+export const addData = (data) => {
+  return {
+    type: MUTATE_DATA,
+    payload: data,
   };
 };
 

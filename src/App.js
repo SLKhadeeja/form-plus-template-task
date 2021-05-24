@@ -8,11 +8,8 @@ import { fetchData } from "./store/actions/fetchActions";
 import "./styles/App.css";
 import { paginate } from "./utils/helpers";
 
-const mapStateToProps = ({ pagination, filter, fetch }) => {
+const mapStateToProps = ({ pagination, fetch }) => {
   return {
-    category: filter.category,
-    alphabeticOrder: filter.alphabeticOrder,
-    dateOrder: filter.dateOrder,
     page: pagination.page,
     error: fetch.error,
     message: fetch.message,
@@ -38,8 +35,9 @@ function App({ page, message, error, data }) {
         </div>
         <div className="template-cards-wrapper">
           {paginate(data, pageSize, page).map((template) => {
-            const { name, description, index } = template;
-            return <TemplateCard key={`${name - index}`} name={name} description={description} />;
+            const { name, description } = template;
+
+            return <TemplateCard key={`${name}-${Math.random()}`} name={name} description={description} />;
           })}
 
           {!error && message === "isLoading" && <Loader />}

@@ -1,4 +1,4 @@
-import { SET_ALPHABETICAL_ORDER, SET_CATEGORY_FILTER, SET_DATE_ORDER } from "../actionTypes";
+import { SEARCH, SET_ALPHABETICAL_ORDER, SET_CATEGORY_FILTER, SET_DATE_ORDER } from "../actionTypes";
 import { FilterInitialState } from "../initialState";
 
 export default function filterFunctions(state = FilterInitialState, action) {
@@ -19,6 +19,12 @@ export default function filterFunctions(state = FilterInitialState, action) {
       return {
         ...state,
         dateOrder: action.payload,
+      };
+
+    case SEARCH:
+      return {
+        ...state,
+        searchInput: action.payload,
       };
 
     default:

@@ -1,31 +1,83 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setAlphabeticOrder, setCategoryFilter, setDateOrder } from "../../store/actions/filterActions";
+import { addData } from "../../store/actions/fetchActions";
+import { setAlphabeticOrder, setCategoryFilter, setDateOrder, search } from "../../store/actions/filterActions";
+import { alphabeticSort, sortByAscendingDate } from "../../utils/helpers";
 import { SearchIcon, WarningInfoIcon } from "../../utils/icons";
 import "./style.css";
 
-const mapStateToProps = ({ filter }) => {
-  return { category: filter.category, alphabeticOrder: filter.alphabeticOrder, dateOrder: filter.dateOrder };
+const mapStateToProps = ({ filter, fetch }) => {
+  return {
+    category: filter.category,
+    alphabeticOrder: filter.alphabeticOrder,
+    dateOrder: filter.dateOrder,
+    data: fetch.data,
+    immutableData: fetch.immutableData,
+  };
 };
 
-const Header = ({ category, alphabeticOrder, dateOrder, setAlphabeticOrder, setCategoryFilter, setDateOrder }) => {
+const Header = ({
+  category,
+  alphabeticOrder,
+  dateOrder,
+  setAlphabeticOrder,
+  setCategoryFilter,
+  setDateOrder,
+  search,
+  data,
+  addData,
+  immutableData,
+}) => {
   const handleCategoryChange = (event) => {
-    setCategoryFilter(event.target.value);
+    const value = event.target.value;
+    setCategoryFilter(value);
+
+    let filteredData = data.filter((item) => {
+      if (item === "All") {
+        return immutableData;
+      }
+
+      return item.category.includes(value);
+    });
+    addData(filteredData);
   };
 
   const handleOrderChange = (event) => {
-    setAlphabeticOrder(event.target.value);
+    const value = event.target.value;
+    setAlphabeticOrder(value);
+    if (value === "Default") {
+      addData(immutableData);
+    } else {
+      value === "Ascending" ? addData(data.sort(alphabeticSort("name"))) : addData(data.sort(alphabeticSort("-name")));
+    }
   };
 
   const handleDateChange = (event) => {
-    setDateOrder(event.target.value);
+    const value = event.target.value;
+    setDateOrder(value);
+
+    if (value === "Default") {
+      addData(immutableData);
+    } else {
+      value === "Ascending" ? addData(data.sort(sortByAscendingDate())) : addData(data.sort((a, b) => new Date(b.date) - new Date(a.date)));
+    }
+  };
+
+  const handleSearch = (event) => {
+    const input = event.target.value.toLowerCase();
+    search(input);
+
+    let filteredData = data.filter((item) => {
+      return item.name.includes(input);
+    });
+    addData(filteredData);
   };
 
   return (
     <>
       <header>
         <div className="search-input-container">
-          <input type="text" id="search" name="search" placeholder="Search Templates" />
+          <input type="text" id="search" name="search" placeholder="Search Templates" onChange={handleSearch} />
           <SearchIcon />
         </div>
         <div className="filter-container">
@@ -35,10 +87,10 @@ const Header = ({ category, alphabeticOrder, dateOrder, setAlphabeticOrder, setC
               <p>Category</p>
             </div>
             <select name="category" onChange={handleCategoryChange} value={category}>
-              <option value="volvo">All</option>
-              <option value="saab">Education</option>
-              <option value="opel">E-commerce</option>
-              <option value="audi">Health</option>
+              <option value="All">All</option>
+              <option value="Education">Education</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="Health">Health</option>
             </select>
           </div>
 
@@ -47,9 +99,9 @@ const Header = ({ category, alphabeticOrder, dateOrder, setAlphabeticOrder, setC
               <p>Order</p>
             </div>
             <select name="order" onChange={handleOrderChange} value={alphabeticOrder}>
-              <option value="volvo">Default</option>
-              <option value="saab">Ascending</option>
-              <option value="opel">Descending</option>
+              <option value="Default">Default</option>
+              <option value="Ascending">Ascending</option>
+              <option value="Descending">Descending</option>
             </select>
           </div>
 
@@ -58,9 +110,9 @@ const Header = ({ category, alphabeticOrder, dateOrder, setAlphabeticOrder, setC
               <p>Date</p>
             </div>
             <select name="date" onChange={handleDateChange} value={dateOrder}>
-              <option value="volvo">Default</option>
-              <option value="saab">Ascending</option>
-              <option value="opel">Descending</option>
+              <option value="Default">Default</option>
+              <option value="Ascending">Ascending</option>
+              <option value="Descending">Descending</option>
             </select>
           </div>
         </div>
@@ -75,4 +127,4 @@ const Header = ({ category, alphabeticOrder, dateOrder, setAlphabeticOrder, setC
   );
 };
 
-export default connect(mapStateToProps, { setDateOrder, setCategoryFilter, setAlphabeticOrder })(Header);
+export default connect(mapStateToProps, { setDateOrder, setCategoryFilter, setAlphabeticOrder, search, addData })(Header);
