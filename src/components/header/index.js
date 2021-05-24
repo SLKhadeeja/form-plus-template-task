@@ -12,7 +12,7 @@ const mapStateToProps = ({ filter, fetch }) => {
     alphabeticOrder: filter.alphabeticOrder,
     dateOrder: filter.dateOrder,
     data: fetch.data,
-    immutableData: fetch.immutableData,
+    immutableData: fetch.immutableData
   };
 };
 
@@ -33,7 +33,7 @@ const Header = ({
     setCategoryFilter(value);
 
     let filteredData = data.filter((item) => {
-      if (item === "All") {
+      if (value === "All") {
         return immutableData;
       }
 
@@ -66,6 +66,10 @@ const Header = ({
   const handleSearch = (event) => {
     const input = event.target.value.toLowerCase();
     search(input);
+
+    if (input.length < 1) {
+      addData(immutableData)
+    }
 
     let filteredData = data.filter((item) => {
       return item.name.includes(input);

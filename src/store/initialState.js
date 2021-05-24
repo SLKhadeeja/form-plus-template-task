@@ -11,7 +11,7 @@ export const PageInitialState = {
 
 export const FetchInitialState = {
   error: false,
-  message: "isLoading",
+  message: "",
   data: [],
   immutableData: [],
 };

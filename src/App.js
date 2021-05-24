@@ -41,6 +41,8 @@ function App({ page, message, error, data }) {
           })}
 
           {!error && message === "isLoading" && <Loader />}
+
+          {message !== "isLoading" && data.length < 1 && <p id="empty-array">No available Template</p>} 
         </div>
       </div>
       <Pagination totalPages={totalPages} />
