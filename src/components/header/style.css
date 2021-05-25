@@ -68,14 +68,21 @@ input:focus-visible, select:focus-visible {
 }
 
 .banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #FFF4EA;
   text-align: center;
   align-content: center;
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
   margin: 2.5rem 0;
   color: #252525;
   border-radius: 2px;
+}
+
+.banner > svg {
+  margin: 0 0.5em;
 }
 
 @media screen and (max-width: 1170px) {

@@ -122,8 +122,9 @@ const Header = ({
         </div>
       </header>
       <div className="banner">
+      <WarningInfoIcon />
         <p>
-          <WarningInfoIcon /> Tada! Get started with a free template. Can’t find what you are looking for? Search from the 1000+ available
+           Tada! Get started with a free template. Can’t find what you are looking for? Search from the 1000+ available
           templates
         </p>
       </div>
