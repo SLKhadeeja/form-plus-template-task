@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { addData } from "../../store/actions/fetchActions";
 import { setAlphabeticOrder, setCategoryFilter, setDateOrder, search } from "../../store/actions/filterActions";
-import { alphabeticSort, sortByAscendingDate } from "../../utils/helpers";
 import { SearchIcon, WarningInfoIcon } from "../../utils/icons";
 import "./style.css";
 
@@ -12,7 +11,7 @@ const mapStateToProps = ({ filter, fetch }) => {
     alphabeticOrder: filter.alphabeticOrder,
     dateOrder: filter.dateOrder,
     data: fetch.data,
-    immutableData: fetch.immutableData
+    immutableData: fetch.immutableData,
   };
 };
 
@@ -48,7 +47,7 @@ const Header = ({
     if (value === "Default") {
       addData(immutableData);
     } else {
-      value === "Ascending" ? addData(data.sort(alphabeticSort("name"))) : addData(data.sort(alphabeticSort("-name")));
+      setDateOrder("Default");
     }
   };
 
@@ -59,7 +58,7 @@ const Header = ({
     if (value === "Default") {
       addData(immutableData);
     } else {
-      value === "Ascending" ? addData(data.sort(sortByAscendingDate())) : addData(data.sort((a, b) => new Date(b.date) - new Date(a.date)));
+      setAlphabeticOrder("Default");
     }
   };
 
@@ -68,7 +67,7 @@ const Header = ({
     search(input);
 
     if (input.length < 1) {
-      addData(immutableData)
+      addData(immutableData);
     }
 
     let filteredData = data.filter((item) => {
@@ -122,11 +121,8 @@ const Header = ({
         </div>
       </header>
       <div className="banner">
-      <WarningInfoIcon />
-        <p>
-           Tada! Get started with a free template. Can’t find what you are looking for? Search from the 1000+ available
-          templates
-        </p>
+        <WarningInfoIcon />
+        <p>Tada! Get started with a free template. Can’t find what you are looking for? Search from the 1000+ available templates</p>
       </div>
     </>
   );

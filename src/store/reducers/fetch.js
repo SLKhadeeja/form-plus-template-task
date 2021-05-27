@@ -35,7 +35,7 @@ export default function fetchFunctions(state = FetchInitialState, action) {
         ...state,
         message: action.payload,
         error: false,
-      }
+      };
 
     default:
       return state;

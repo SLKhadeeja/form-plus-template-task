@@ -10,7 +10,7 @@ const mapStateToProps = ({ pagination, filter }) => {
 const Pagination = ({ setPage, page, totalPages }) => {
   return (
     <div className="pagination-container">
-      <p onClick={() => setPage(page--)} className="page-toggle">
+      <p onClick={() => setPage(page - 1)} className="page-toggle">
         Previous
       </p>
       <div className="pages">
@@ -18,7 +18,7 @@ const Pagination = ({ setPage, page, totalPages }) => {
         <p>of</p>
         <p>{totalPages}</p>
       </div>
-      <p onClick={() => setPage(page++)} className="page-toggle">
+      <p onClick={() => setPage(page + 1)} className="page-toggle">
         Next <i className="fas fa-chevron-right"></i>
       </p>
     </div>

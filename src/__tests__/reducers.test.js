@@ -1,4 +1,15 @@
-import { ADD_DATA, DATA_LOADING, DATA_SUCCESS, GET_DATA_FAILURE, MUTATE_DATA, SEARCH, SET_ALPHABETICAL_ORDER, SET_CATEGORY_FILTER, SET_DATE_ORDER, SET_PAGE } from "../store/actionTypes";
+import {
+  ADD_DATA,
+  DATA_LOADING,
+  DATA_SUCCESS,
+  GET_DATA_FAILURE,
+  MUTATE_DATA,
+  SEARCH,
+  SET_ALPHABETICAL_ORDER,
+  SET_CATEGORY_FILTER,
+  SET_DATE_ORDER,
+  SET_PAGE,
+} from "../store/actionTypes";
 import { FetchInitialState, FilterInitialState, PageInitialState } from "../store/initialState";
 import fetchFunctions from "../store/reducers/fetch";
 import filterFunctions from "../store/reducers/filter";
@@ -42,22 +53,37 @@ describe("all reducers", () => {
     expect(
       fetchFunctions(FetchInitialState, {
         type: ADD_DATA,
-        payload: [{"name": "a name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}, {"name": "another  name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}],
+        payload: [
+          { name: "a name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+          { name: "another  name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+        ],
       })
     ).toEqual({
       ...FetchInitialState,
-      data: [{"name": "a name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}, {"name": "another  name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}],
-      immutableData: [{"name": "a name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}, {"name": "another  name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}],
+      data: [
+        { name: "a name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+        { name: "another  name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+      ],
+      immutableData: [
+        { name: "a name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+        { name: "another  name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+      ],
     });
 
     expect(
       fetchFunctions(FetchInitialState, {
         type: MUTATE_DATA,
-        payload: [{"name": "a name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}, {"name": "another  name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}],
+        payload: [
+          { name: "a name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+          { name: "another  name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+        ],
       })
     ).toEqual({
       ...FetchInitialState,
-      data: [{"name": "a name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}, {"name": "another  name", "date": "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)"}],
+      data: [
+        { name: "a name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+        { name: "another  name", date: "Wed Mar 25 2015 01:00:00 GMT+0100 (West Africa Standard Time)" },
+      ],
     });
   });
 
@@ -89,7 +115,7 @@ describe("all reducers", () => {
       })
     ).toEqual({
       ...FilterInitialState,
-      dateOrder: "Ascending"
+      dateOrder: "Ascending",
     });
 
     expect(
@@ -99,7 +125,7 @@ describe("all reducers", () => {
       })
     ).toEqual({
       ...FilterInitialState,
-      searchInput: "vein"
+      searchInput: "vein",
     });
   });
 
@@ -112,6 +138,5 @@ describe("all reducers", () => {
     ).toEqual({
       page: 2,
     });
-
   });
 });
