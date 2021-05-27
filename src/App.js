@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Header from "./components/header";
 import Loader from "./components/loader";
@@ -21,15 +21,10 @@ const mapStateToProps = ({ pagination, fetch, filter }) => {
 function App({ page, message, error, data, category }) {
   const pageSize = 15;
   const totalPages = Math.ceil(data.length / pageSize);
-  const [workingData, setWorkingData] = useState(data);
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  useEffect(() => {
-    setWorkingData(data);
-  }, [data])
 
   return (
     <div className="App">
@@ -40,7 +35,7 @@ function App({ page, message, error, data, category }) {
           <p className="template-quantity">{`${data.length}`} templates</p>
         </div>
         <div className="template-cards-wrapper">
-          {paginate(workingData, pageSize, page).map((template) => {
+          {paginate(data, pageSize, page).map((template) => {
             const { name, description } = template;
 
             return <TemplateCard key={`${name}-${Math.random()}`} name={name} description={description} />;
