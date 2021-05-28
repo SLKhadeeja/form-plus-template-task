@@ -17,20 +17,30 @@ const mapStateToProps = ({ pagination, fetch, filter }) => {
     data: fetch.data,
     alphabeticOrder: filter.alphabeticOrder,
     dateOrder: filter.dateOrder,
+    searchInput: filter.searchInput,
   };
 };
 
-function App({ page, message, error, data, alphabeticOrder, dateOrder }) {
+function App({ page, message, error, data, alphabeticOrder, dateOrder, searchInput }) {
   const pageSize = 15;
   const totalPages = Math.ceil(data.length / pageSize);
   let sortedData =
     alphabeticOrder === "Default"
-      ? dateOrder === "Ascending"
+      ? dateOrder === "Default"
+        ? data
+        : dateOrder === "Ascending"
         ? data.sort(sortByAscendingDate())
         : data.sort((a, b) => new Date(b.date) - new Date(a.date))
       : alphabeticOrder === "Ascending"
       ? data.sort(alphabeticSort("name"))
       : data.sort(alphabeticSort("-name"));
+
+  const workingData =
+    searchInput.length < 1
+      ? sortedData
+      : sortedData.filter((item) => {
+          return item.name.includes(searchInput);
+        });
 
   useEffect(() => {
     fetchData();
@@ -39,25 +49,28 @@ function App({ page, message, error, data, alphabeticOrder, dateOrder }) {
   return (
     <>
       <div className="App">
-        <Header />
-        <div className="content">
-          <div className="content-top">
-            <p className="title">All Templates</p>
-            <p className="template-quantity">{`${data.length}`} templates</p>
-          </div>
-          <div className="template-cards-wrapper">
-            {paginate(sortedData, pageSize, page).map((template) => {
-              const { name, description } = template;
+        <Header fetch={message} />
+        {!error && message === "isLoading" && <Loader />}
+        {!error && message === "sucessful" && (
+          <>
+            <div className="content">
+              <div className="content-top">
+                <p className="title">All Templates</p>
+                <p className="template-quantity">{`${workingData.length}`} templates</p>
+              </div>
+              <div className="template-cards-wrapper">
+                {paginate(workingData, pageSize, page).map((template) => {
+                  const { name, description } = template;
 
-              return <TemplateCard key={`${name}-${Math.random()}`} name={name} description={description} />;
-            })}
+                  return <TemplateCard key={`${name}-${Math.random()}`} name={name} description={description} />;
+                })}
 
-            {!error && message === "isLoading" && <Loader />}
-
-            {message !== "isLoading" && data.length < 1 && <p id="empty-array">No available Template</p>}
-          </div>
-        </div>
-        <Pagination totalPages={totalPages} />
+                {message !== "isLoading" && data.length < 1 && <p id="empty-array">No available Template</p>}
+              </div>
+            </div>
+            <Pagination totalPages={totalPages} />{" "}
+          </>
+        )}
       </div>
       {error && <Error message={"An Error has occured, Please reload the page"} />}
     </>

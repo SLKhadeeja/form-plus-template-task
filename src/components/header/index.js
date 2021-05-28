@@ -26,6 +26,7 @@ const Header = ({
   data,
   addData,
   immutableData,
+  fetch,
 }) => {
   const handleCategoryChange = (event) => {
     const value = event.target.value;
@@ -44,9 +45,7 @@ const Header = ({
   const handleOrderChange = (event) => {
     const value = event.target.value;
     setAlphabeticOrder(value);
-    if (value === "Default") {
-      addData(immutableData);
-    } else {
+    if (value !== "Default") {
       setDateOrder("Default");
     }
   };
@@ -55,9 +54,7 @@ const Header = ({
     const value = event.target.value;
     setDateOrder(value);
 
-    if (value === "Default") {
-      addData(immutableData);
-    } else {
+    if (value !== "Default") {
       setAlphabeticOrder("Default");
     }
   };
@@ -65,15 +62,6 @@ const Header = ({
   const handleSearch = (event) => {
     const input = event.target.value.toLowerCase();
     search(input);
-
-    if (input.length < 1) {
-      addData(immutableData);
-    }
-
-    let filteredData = data.filter((item) => {
-      return item.name.includes(input);
-    });
-    addData(filteredData);
   };
 
   return (
@@ -120,10 +108,12 @@ const Header = ({
           </div>
         </div>
       </header>
-      <div className="banner">
-        <WarningInfoIcon />
-        <p>Tada! Get started with a free template. Can’t find what you are looking for? Search from the 1000+ available templates</p>
-      </div>
+      {fetch === "sucessful" && (
+        <div className="banner">
+          <WarningInfoIcon />
+          <p>Tada! Get started with a free template. Can’t find what you are looking for? Search from the 1000+ available templates</p>
+        </div>
+      )}
     </>
   );
 };

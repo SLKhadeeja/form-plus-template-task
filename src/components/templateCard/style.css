@@ -20,6 +20,10 @@
 .card-info > p {
   line-height: 17px;
   color: #3F3E3E;
+  width: 100%;
+  overflow: hidden;
+  white-space: break-spaces;
+  text-overflow: ellipsis;
 }
 
 .use-template-container {
@@ -32,4 +36,5 @@
   width: 100%;
   box-sizing: border-box;
   bottom: 0;
+  cursor: pointer;
 }
