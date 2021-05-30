@@ -1,10 +1,11 @@
 #outer {
   padding: 4rem;
+  margin: auto;
 }
 
 #middle{
-  height: 100px;
-  width: 100px;
+  height: 7em;
+  width: 7em;
   margin:auto;
   position: relative;
   top:20px;
@@ -17,8 +18,8 @@
 
 #inner{
   background: #ffffff;
-  height: 88px;
-  width: 88px;
+  height: 6.1em;
+  width: 6.1em;
   margin:auto;
   position: relative;
   top:6px;

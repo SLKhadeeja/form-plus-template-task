@@ -23,7 +23,6 @@ const mapStateToProps = ({ pagination, fetch, filter }) => {
 
 function App({ page, message, error, data, alphabeticOrder, dateOrder, searchInput }) {
   const pageSize = 15;
-  const totalPages = Math.ceil(data.length / pageSize);
   let sortedData =
     alphabeticOrder === "Default"
       ? dateOrder === "Default"
@@ -41,6 +40,8 @@ function App({ page, message, error, data, alphabeticOrder, dateOrder, searchInp
       : sortedData.filter((item) => {
           return item.name.includes(searchInput);
         });
+  
+  const totalPages = Math.ceil(workingData.length / pageSize);
 
   useEffect(() => {
     fetchData();
@@ -65,7 +66,7 @@ function App({ page, message, error, data, alphabeticOrder, dateOrder, searchInp
                   return <TemplateCard key={`${name}-${Math.random()}`} name={name} description={description} />;
                 })}
 
-                {message !== "isLoading" && data.length < 1 && <p id="empty-array">No available Template</p>}
+                {message !== "isLoading" && workingData.length < 1 && <p id="empty-array">No available Template</p>}
               </div>
             </div>
             <Pagination totalPages={totalPages} />{" "}
